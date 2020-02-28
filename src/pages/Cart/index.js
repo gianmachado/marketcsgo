@@ -1,6 +1,10 @@
 import React from 'react';
+import {
+    MdRemoveCircleOutline,
+    MdAddCircleOutline,
+    MdDelete,
+} from 'react-icons/md';
 import { Container, ProductTable, Total } from './styles';
-import { MdRemoveCircleOutline, MdAddCircleOutline } from 'react-icons/md';
 
 export default function Cart() {
     return (
@@ -28,30 +32,42 @@ export default function Cart() {
                             <span>R$15000,00</span>
                         </td>
                         <td>
-                            <button type="button">
-                                <MdRemoveCircleOutline
-                                    size={20}
-                                    color="#339eff"
-                                />
-                            </button>
+                            <div>
+                                <button type="button">
+                                    <MdRemoveCircleOutline
+                                        size={20}
+                                        color="#339eff"
+                                    />
+                                </button>
+                                <input type="number" readOnly value={1} />
+                                <button type="button">
+                                    <MdAddCircleOutline
+                                        size={20}
+                                        color="#339eff"
+                                    />
+                                </button>
+                            </div>
+                        </td>
+
+                        <td>
+                            <strong>R$3000,00</strong>
                         </td>
                         <td>
                             <button type="button">
-                                <MdAddCircleOutline size={20} color="#339eff" />
+                                <MdDelete size={20} color="#339eff" />
                             </button>
                         </td>
                     </tr>
                 </tbody>
-
-                <footer>
-                    <button type="button"> Finalizar pedido</button>
-
-                    <Total>
-                        <span>TOTAL</span>
-                        <strong>R$1920,58</strong>
-                    </Total>
-                </footer>
             </ProductTable>
+            <footer>
+                <button type="button"> Finalizar pedido</button>
+
+                <Total>
+                    <span>TOTAL</span>
+                    <strong>R$1920,58</strong>
+                </Total>
+            </footer>
         </Container>
     );
 }

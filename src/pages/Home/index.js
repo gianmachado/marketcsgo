@@ -1,74 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { MdAddShoppingCart } from 'react-icons/md';
 import { ProductList } from './styles';
+import api from '../../services/api';
+import { formatPrice } from '../../util/format';
 
-export default function Home() {
-    return (
-        <ProductList>
-            <li>
-                <img
-                    src="https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_cu_medieval_dragon_awp_light_large.cb3b8168e59e96fd33efa9578206a2aaed036fc0.png"
-                    alt="Dragon Lore"
-                />
-                <strong>AWP Dragon Lore</strong>
-                <span>R$15000,00</span>
+class Home extends Component {
+    state = {
+        skins: [],
+    };
 
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#fff" /> 1
-                    </div>
+    async componentDidMount() {
+        const response = await api.get('skins');
+        const data = response.data.map(skin => ({
+            ...skin,
+            priceFormatted: formatPrice(skin.preco),
+        }));
+        this.setState({ skins: data });
+    }
 
-                    <span>ADICIONAR AO CARRINHO</span>
-                </button>
-            </li>
-            <li>
-                <img
-                    src="https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_cu_medieval_dragon_awp_light_large.cb3b8168e59e96fd33efa9578206a2aaed036fc0.png"
-                    alt="Dragon Lore"
-                />
-                <strong>AWP Dragon Lore</strong>
-                <span>R$15000,00</span>
+    HandleAddProduct = skin => {
+        const { dispatch } = this.props;
 
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#fff" /> 1
-                    </div>
+        dispatch({
+            type: 'ADD_TO_CART',
+            skin,
+        });
+    };
 
-                    <span>ADICIONAR AO CARRINHO</span>
-                </button>
-            </li>
-            <li>
-                <img
-                    src="https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_cu_medieval_dragon_awp_light_large.cb3b8168e59e96fd33efa9578206a2aaed036fc0.png"
-                    alt="Dragon Lore"
-                />
-                <strong>AWP Dragon Lore</strong>
-                <span>R$15000,00</span>
+    render() {
+        const { skins } = this.state;
+        return (
+            <ProductList>
+                {skins.map(skin => (
+                    <li key={skin.id}>
+                        <img src={skin.img} alt={skin.title} />
+                        <strong>{skin.title}</strong>
+                        <span>{skin.priceFormatted}</span>
 
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#fff" /> 1
-                    </div>
-
-                    <span>ADICIONAR AO CARRINHO</span>
-                </button>
-            </li>
-            <li>
-                <img
-                    src="https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_cu_medieval_dragon_awp_light_large.cb3b8168e59e96fd33efa9578206a2aaed036fc0.png"
-                    alt="Dragon Lore"
-                />
-                <strong>AWP Dragon Lore</strong>
-                <span>R$15000,00</span>
-
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#fff" /> 1
-                    </div>
-
-                    <span>ADICIONAR AO CARRINHO</span>
-                </button>
-            </li>
-        </ProductList>
-    );
+                        <button
+                            type="button"
+                            onClick={() => this.HandleAddProduct(skin)}
+                        >
+                            <div>
+                                <MdAddShoppingCart size={16} color="#fff" /> 1
+                            </div>
+                            <span>ADICIONAR AO CARRINHO</span>
+                        </button>
+                    </li>
+                ))}
+            </ProductList>
+        );
+    }
 }
+
+export default connect()(Home);

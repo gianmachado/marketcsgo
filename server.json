@@ -1,0 +1,28 @@
+{
+    "skins": [
+        {
+            "id": 1,
+            "preco": 1500.0,
+            "img": "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_cu_medieval_dragon_awp_light_large.cb3b8168e59e96fd33efa9578206a2aaed036fc0.png",
+            "title": "AWP | Dragon Lore"
+        },
+        {
+            "id": 2,
+            "preco": 150.0,
+            "img": "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_cu_ak47_asiimov_light_large.665fc3b83c8046398787a57d2ef7a9d938244820.png",
+            "title": "AK | Asiimov"
+        },
+        {
+            "id": 3,
+            "preco": 1000.0,
+            "img": "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_knife_karambit_am_gamma_doppler_phase1_light_large.769cf2ab676ea2a7d7322c258f57bac8dca00336.png",
+            "title": "KNIFE | KARAMBIT"
+        },
+        {
+            "id": 4,
+            "preco": 120.0,
+            "img": "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_cu_ak47_rubber_light_large.5836c38d3037a5a1f90ffdc8c9d0b94367ca8efd.png",
+            "title": "AK-47 | Vulcan"
+        }
+    ]
+}
